@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="data/groups/a.js"></script>
+        <script src="data/groups/b.js"></script>
+        <script src="data/groups/c.js"></script>
+        <script src="data/groups/d.js"></script>
+        <script src="data/groups/e.js"></script>
+        <script src="data/groups/f.js"></script>
+        <script src="data/groups/g.js"></script>
+        <script src="data/groups/h.js"></script>
+        <script src="script/controller.js"></script>
+        <script src="script/tabelas.js"></script>
+        <script src="script/chaves.js"></script>
+        <script src="data/brackets/round-16.js"></script>
+        <script src="data/brackets/quarters.js"></script>
+        <script src="data/brackets/semi.js"></script>
+        <script src="data/brackets/final.js"></script>
+        <link rel="stylesheet" href="styles/controller.css">
+        <link rel="stylesheet" href="styles/tabelas.css">
+        <link rel="stylesheet" href="styles/chaves.css">
+        <title>Classificação</title>
+    </head>
+    <body>
+        <div id="tabs-controller">
+            <button class="tablinks" onclick="openGroup(event, 'A')" id="defaultOpen">A</button>
+            <button class="tablinks" onclick="openGroup(event, 'B')">B</button>
+            <button class="tablinks" onclick="openGroup(event, 'C')">C</button>
+            <button class="tablinks" onclick="openGroup(event, 'D')">D</button>
+            <button class="tablinks" onclick="openGroup(event, 'E')">E</button>
+            <button class="tablinks" onclick="openGroup(event, 'F')">F</button>
+            <button class="tablinks" onclick="openGroup(event, 'G')">G</button>
+            <button class="tablinks" onclick="openGroup(event, 'H')">H</button>
+            <button class="tablinks" onclick="openGroup(event, 'bracket')">Mata-Mata</button>
+        </div>
+        <div id="table">
+            <table>
+                <tr>
+                    <th></th>
+                    <th class="position-column"></th>
+                    <th class="name-column">Seleções</th>
+                    <th>PG</th>
+                    <th>PJ</th>
+                    <th>V</th>
+                    <th>E</th>
+                    <th>D</th>
+                    <th>SG</th>
+                    <th>GP</th>
+                    <th>GC</th>
+                </tr>
+                <tr>
+                    <td><div class="square green"></div></td>
+                    <td class="position-column">1</td>
+                    <td class="name-column"><img class="image-box"><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                </tr>
+                <tr>
+                    <td><div class="square green"></div></td>
+                    <td class="position-column">2</td>
+                    <td class="name-column"><img class="image-box"><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                </tr>
+                <tr>
+                    <td><div class="square gray"></div></td>
+                    <td class="position-column">3</td>
+                    <td class="name-column"><img class="image-box"><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                </tr>
+                <tr>
+                    <td><div class="square gray"></div></td>
+                    <td class="position-column">4</td>
+                    <td class="name-column"><img class="image-box"><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                    <td><span class="data"></span></td>
+                </tr>
+            </table>
+            <div id="explanation">
+                <div class="first-area">
+                    <div class="rectangle green"></div>Classificados para as oitavas
+                </div>
+                <div class="empty"></div>
+                <div class="second-area">
+                    <div class="explanation-left">
+                        <div class="info-box"><strong>PG:</strong> Pontos Ganhos</div>
+                        <div class="info-box"><strong>V:</strong> Número de Vitórias</div>
+                        <div class="info-box"><strong>E:</strong> Número de Empates</div>
+                        <div class="info-box"><strong>D:</strong> Número de Derrotas</div>
+                    </div>
+                    <div class="explanation-right">
+                        <div class="info-box"><strong>PJ:</strong> Partidas Jogadas</div>
+                        <div class="info-box"><strong>SG:</strong> Saldo de Gols</div>
+                        <div class="info-box"><strong>GP:</strong> Gols Marcados</div>
+                        <div class="info-box"><strong>GC:</strong> Gols Sofridos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bracket">
+            <div class="bracket-container ">
+                <div class="games-column">
+                    <span class="label">Oitavas de Final</span>
+                </div>
+                <div class="brackets-column"></div>
+                <div class="games-column">
+                    <span class="label">Quartas de Final</span>
+                </div>
+                <div class="brackets-column"></div>
+                <div class="games-column">
+                    <span class="label">Semifinal</span>
+                </div>
+                <div class="brackets-column"></div>
+                <div class="games-column">
+                    <span class="label">Final</span>
+                </div>
+            </div>
+            <div class="spacing-8"></div>
+            <div class="bracket-container">
+                <div id="round-16" class="games-column">
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                    <div class="spacing-8"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                    <div class="spacing-16"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                    <div class="spacing-8"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                    <div class="spacing-16"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                    <div class="spacing-8"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                    <div class="spacing-16"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                    <div class="spacing-8"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                </div>
+                <div class="brackets-column">
+                    <div style="height: 48px;"></div>
+                    <div class="bracket-group">
+                        <div class="bracket-left bracket-1-1"></div>
+                        <div class="bracket-right bracket-1-2"></div>
+                    </div>
+                    <div class="spacing-112"></div>
+                    <div class="bracket-group">
+                        <div class="bracket-left bracket-1-1"></div>
+                        <div class="bracket-right bracket-1-2"></div>
+                    </div>
+                    <div class="spacing-112"></div>
+                    <div class="bracket-group">
+                        <div class="bracket-left bracket-1-1"></div>
+                        <div class="bracket-right bracket-1-2"></div>
+                    </div>
+                    <div class="spacing-112"></div>
+                    <div class="bracket-group">
+                        <div class="bracket-left bracket-1-1"></div>
+                        <div class="bracket-right bracket-1-2"></div>
+                    </div>
+                </div>
+                <div id="quarters" class="games-column">
+                    <div style="height: 53px;"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                    <div class="spacing-122"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                    <div class="spacing-122"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                    <div class="spacing-122"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                </div>
+                <div class="brackets-column">
+                    <div style="height: 101px;"></div>
+                    <div class="bracket-group">
+                        <div class="bracket-left bracket-2-1"></div>
+                        <div class="bracket-right bracket-2-2"></div>
+                    </div>
+                    <div style="height: 218px;"></div>
+                    <div class="bracket-group">
+                        <div class="bracket-left bracket-2-1"></div>
+                        <div class="bracket-right bracket-2-2"></div>
+                    </div>
+                </div>
+                <div id="semi" class="games-column">
+                    <div style="height: 163px;"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                    <div style="height: 342px;"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                </div>
+                <div class="brackets-column">
+                    <div style="height: 211px;"></div>
+                    <div class="bracket-group">
+                        <div class="bracket-left bracket-3-1"></div>
+                        <div class="bracket-right bracket-3-2"></div>
+                    </div>
+                </div>
+                <div id="final" class="games-column">
+                    <div style="height: 383px;"></div>
+                    <div class="card">
+                        <span class="date">Data</span>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
