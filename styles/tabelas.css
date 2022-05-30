@@ -1,0 +1,122 @@
+#table {
+    width: 50%;
+    min-width: 590px;
+    float: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid white;
+    text-align: center;
+    padding: 4px 10px;
+    height: 30px;
+    background-color: #FAF9F6;
+}
+
+td {
+    font-family: sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+th {
+    border: 0;
+    padding-bottom: 0;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+td:first-of-type, th:first-of-type {
+    position: relative;
+    width: 10px;
+    padding: 0;
+    border-right: 0;
+}
+
+.position-column {
+    border-left: 0px;
+    border-right: 0px;
+    padding-left: 2px;
+    font-weight: 400;
+}
+
+.name-column {
+    border-left: 0px;
+    text-align: left;
+    width: 270px;
+}
+
+.square {
+    width: 6px;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.green {
+    background-color: green;
+}
+
+.gray {
+    background-color: gray;
+}
+
+.image-box {
+    height: 28px;
+    width: 40px;
+    background-color: gray;
+    vertical-align: middle;
+    margin-right: 12px;
+}
+
+#explanation {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+.first-area {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.empty {
+    width: 8%;
+}
+
+.second-area {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+}
+
+.explanation-left {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.explanation-right {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-box {
+    padding-bottom: 4px;
+}
+
+.rectangle {
+    height: 15px;
+    width: 30px;
+    float: left;
+    margin-right: 8px;
+}

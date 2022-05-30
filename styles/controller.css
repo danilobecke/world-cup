@@ -1,0 +1,25 @@
+#tabs-controller {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+#tabs-controller button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#tabs-controller button:hover {
+    background-color: #ddd;
+}
+  
+#tabs-controller button.active {
+    background-color: #ccc;
+}
