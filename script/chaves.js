@@ -1,39 +1,39 @@
-function init_brackets() {  
-    render_round_16();
-    render_quarters();
-    render_semi();
-    render_final();
+function renderBrackets() {  
+    renderRound16();
+    renderQuarters();
+    renderSemi();
+    renderFinal();
 }
 
-function render_round_16() {
-    let cards = extract_cards("#round-16")
-    let matches = round_16["matches"]
-    render_data(matches, cards)
+function renderRound16() {
+    let cards = extractCards("#round-16")
+    let matches = round16["matches"]
+    renderData(matches, cards)
 }
 
-function render_quarters() {
-    let cards = extract_cards("#quarters")
+function renderQuarters() {
+    let cards = extractCards("#quarters")
     let matches = quarters["matches"]
-    render_data(matches, cards)
+    renderData(matches, cards)
 }
 
-function render_semi() {
-    let cards = extract_cards("#semi")
+function renderSemi() {
+    let cards = extractCards("#semi")
     let matches = semi["matches"]
-    render_data(matches, cards)
+    renderData(matches, cards)
 }
 
-function render_final() {
-    let cards = extract_cards("#final")
+function renderFinal() {
+    let cards = extractCards("#final")
     let matches = final["matches"]
-    render_data(matches, cards)
+    renderData(matches, cards)
 }
 
-function extract_cards(id) {
+function extractCards(id) {
     return $(id).children().filter(function(index, element) { return $(element).hasClass("card")  })
 }
 
-function render_data(matches, cards) {
+function renderData(matches, cards) {
     matches.forEach(function(match, index) {
         let date = match["date"]
         let first_team = match["first_team"]
@@ -44,11 +44,11 @@ function render_data(matches, cards) {
         if(!second_team) {
             second_team = {"name": "A definir", "acronym": "unknown", "score": null, "winner": false}
         }
-        render_game(date, first_team, second_team, cards[index])
+        renderGame(date, first_team, second_team, cards[index])
     });
 }
 
-function render_game(date, first_team, second_team, card) {
+function renderGame(date, first_team, second_team, card) {
     $(card).children().each(function(index, row) {
         switch(index) {
             case 0:

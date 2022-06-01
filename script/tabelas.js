@@ -1,12 +1,17 @@
+var selectedGroup;
+
 function resetImages() {
     $(".image-box").toArray().forEach(function(element) {
         $(element).removeAttr("src");
     });
 }
 
-function handleGroup(group) {
+function handleGroup(group, shouldResetImage) {
+    selectedGroup = group;
     showGroups(true)
-    resetImages()
+    if(shouldResetImage) {
+        resetImages()
+    }
     $("tr").each(function(position, tr) {
         if(position == 0) {
             return // skip header
@@ -14,18 +19,25 @@ function handleGroup(group) {
         let team = group["teams"].find(function(element) {
             return element["position"] == position
         })
+        $(tr).attr("acronym", team["acronym"])
         $(tr).children().each(function(index, td) {
             let dataElement = $(td).children().toArray().find(function(element) {
                 return $(element).hasClass("data");
             })
             switch(index) {
-                case 0, 1: return
+                case 0:
+                    let div = $(td).children()[0]
+                    let squareColor = position <= 2 ? "green" : "gray"
+                    $(div).removeClass()
+                    $(div).addClass("square " + squareColor)
+                    break;
+                case 1: $(td).html(position); break;
                 case 2:
                     let imageElement = $(td).children().toArray().find(function(element) {
                         return $(element).hasClass("image-box");
                     })
                     let acronym = team["acronym"]
-                    if(acronym != "unknown") {
+                    if(acronym != "unknown" && shouldResetImage) {
                         $(imageElement).attr("src", "https://countryflagsapi.com/png/" + team["acronym"]);
                     }
                     $(dataElement).html(team["name"]);

@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <script src="data/groups/a.js"></script>
         <script src="data/groups/b.js"></script>
         <script src="data/groups/c.js"></script>
@@ -14,6 +15,7 @@
         <script src="script/controller.js"></script>
         <script src="script/tabelas.js"></script>
         <script src="script/chaves.js"></script>
+        <script src="script/simulacao.js"></script>
         <script src="data/brackets/round-16.js"></script>
         <script src="data/brackets/quarters.js"></script>
         <script src="data/brackets/semi.js"></script>
@@ -36,90 +38,92 @@
             <button class="tablinks" onclick="openGroup(event, 'bracket')">Mata-Mata</button>
         </div>
         <div id="table">
-            <table>
-                <tr>
-                    <th></th>
-                    <th class="position-column"></th>
-                    <th class="name-column">Seleções</th>
-                    <th>PG</th>
-                    <th>PJ</th>
-                    <th>V</th>
-                    <th>E</th>
-                    <th>D</th>
-                    <th>SG</th>
-                    <th>GP</th>
-                    <th>GC</th>
-                </tr>
-                <tr>
-                    <td><div class="square green"></div></td>
-                    <td class="position-column">1</td>
-                    <td class="name-column"><img class="image-box"><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                </tr>
-                <tr>
-                    <td><div class="square green"></div></td>
-                    <td class="position-column">2</td>
-                    <td class="name-column"><img class="image-box"><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                </tr>
-                <tr>
-                    <td><div class="square gray"></div></td>
-                    <td class="position-column">3</td>
-                    <td class="name-column"><img class="image-box"><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                </tr>
-                <tr>
-                    <td><div class="square gray"></div></td>
-                    <td class="position-column">4</td>
-                    <td class="name-column"><img class="image-box"><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                    <td><span class="data"></span></td>
-                </tr>
-            </table>
-            <div id="explanation">
-                <div class="first-area">
-                    <div class="rectangle green"></div>Classificados para as oitavas
-                </div>
-                <div class="empty"></div>
-                <div class="second-area">
-                    <div class="explanation-left">
-                        <div class="info-box"><strong>PG:</strong> Pontos Ganhos</div>
-                        <div class="info-box"><strong>V:</strong> Número de Vitórias</div>
-                        <div class="info-box"><strong>E:</strong> Número de Empates</div>
-                        <div class="info-box"><strong>D:</strong> Número de Derrotas</div>
+            <div id="tableAndTips">
+                <table id="sortable">
+                    <tr>
+                        <th></th>
+                        <th class="position-column"></th>
+                        <th class="name-column">Seleções</th>
+                        <th>PG</th>
+                        <th>PJ</th>
+                        <th>V</th>
+                        <th>E</th>
+                        <th>D</th>
+                        <th>SG</th>
+                        <th>GP</th>
+                        <th>GC</th>
+                    </tr>
+                    <tr>
+                        <td class="square-column"><div></div></td>
+                        <td class="position-column"></td>
+                        <td class="name-column"><img class="image-box"><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="square-column"><div></div></td>
+                        <td class="position-column"></td>
+                        <td class="name-column"><img class="image-box"><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="square-column"><div></div></td>
+                        <td class="position-column"></td>
+                        <td class="name-column"><img class="image-box"><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="square-column"><div></div></td>
+                        <td class="position-column"></td>
+                        <td class="name-column"><img class="image-box"><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                        <td><span class="data"></span></td>
+                    </tr>
+                </table>
+                <div id="explanation">
+                    <div class="first-area">
+                        <div class="rectangle green"></div>Classificados para as oitavas
                     </div>
-                    <div class="explanation-right">
-                        <div class="info-box"><strong>PJ:</strong> Partidas Jogadas</div>
-                        <div class="info-box"><strong>SG:</strong> Saldo de Gols</div>
-                        <div class="info-box"><strong>GP:</strong> Gols Marcados</div>
-                        <div class="info-box"><strong>GC:</strong> Gols Sofridos</div>
+                    <div class="empty"></div>
+                    <div class="second-area">
+                        <div class="explanation-left">
+                            <div class="info-box"><strong>PG:</strong> Pontos Ganhos</div>
+                            <div class="info-box"><strong>V:</strong> Número de Vitórias</div>
+                            <div class="info-box"><strong>E:</strong> Número de Empates</div>
+                            <div class="info-box"><strong>D:</strong> Número de Derrotas</div>
+                        </div>
+                        <div class="explanation-right">
+                            <div class="info-box"><strong>PJ:</strong> Partidas Jogadas</div>
+                            <div class="info-box"><strong>SG:</strong> Saldo de Gols</div>
+                            <div class="info-box"><strong>GP:</strong> Gols Marcados</div>
+                            <div class="info-box"><strong>GC:</strong> Gols Sofridos</div>
+                        </div>
                     </div>
                 </div>
             </div>
