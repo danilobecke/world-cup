@@ -34,8 +34,8 @@ var b = {
             "goals-conceded": 0
         },
         {
-            "name": "País de Gales/Escócia/Ucrânia",
-            "acronym": "unknown",
+            "name": "País de Gales",
+            "acronym": "GB-WLS",
             "position": 4,
             "points": 0,
             "win": 0,

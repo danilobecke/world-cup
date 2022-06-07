@@ -131,19 +131,31 @@
         <div id="bracket">
             <div class="bracket-container ">
                 <div class="games-column">
-                    <span class="label">Oitavas de Final</span>
+                    <div class="label-container">
+                        <span class="label">Oitavas de Final</span>
+                        <button class="edit" onclick="startEditing(event, 'round16')">✎</button>
+                    </div>
                 </div>
                 <div class="brackets-column"></div>
                 <div class="games-column">
-                    <span class="label">Quartas de Final</span>
+                    <div class="label-container">
+                        <span class="label">Quartas de Final</span>
+                        <button class="edit" onclick="startEditing(event, 'quarters')">✎</button>
+                    </div>
                 </div>
                 <div class="brackets-column"></div>
                 <div class="games-column">
-                    <span class="label">Semifinal</span>
+                    <div class="label-container">
+                        <span class="label">Semifinal</span>
+                        <button class="edit" onclick="startEditing(event, 'semi')">✎</button>
+                    </div>
                 </div>
                 <div class="brackets-column"></div>
                 <div class="games-column">
-                    <span class="label">Final</span>
+                    <div class="label-container">
+                        <span class="label">Final</span>
+                        <button class="edit" onclick="startEditing(event, 'final')">✎</button>
+                    </div>
                 </div>
             </div>
             <div class="spacing-8"></div>
@@ -151,50 +163,50 @@
                 <div id="round-16" class="games-column">
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                     <div class="spacing-8"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                     <div class="spacing-16"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                     <div class="spacing-8"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                     <div class="spacing-16"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                     <div class="spacing-8"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                     <div class="spacing-16"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                     <div class="spacing-8"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                 </div>
                 <div class="brackets-column">
@@ -223,26 +235,26 @@
                     <div style="height: 53px;"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                     <div class="spacing-122"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                     <div class="spacing-122"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                     <div class="spacing-122"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                 </div>
                 <div class="brackets-column">
@@ -261,14 +273,14 @@
                     <div style="height: 163px;"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                     <div style="height: 342px;"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                 </div>
                 <div class="brackets-column">
@@ -282,8 +294,8 @@
                     <div style="height: 383px;"></div>
                     <div class="card">
                         <span class="date">Data</span>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
-                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><span class="winner">◀</span></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
+                        <div class="team"><span><img class="small-img"><span></span></span><span><span></span><button class="winner" onclick="selectWinner(event)">◀</button></span></div>
                     </div>
                 </div>
             </div>

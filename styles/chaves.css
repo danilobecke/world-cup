@@ -22,9 +22,24 @@
     flex-direction: column;
 }
 
-.label {
+.label-container {
     margin: auto;
+}
+
+.label {
     font-weight: 600;
+}
+
+.edit {
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+    border-radius: 4px;
+    color: black;
+}
+
+.edit.active {
+    background-color: #ddd;
 }
 
 .card {
@@ -130,4 +145,20 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.winner {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0px;
+    color: black;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: sans-serif;
+}
+
+.winner[editing="true"] {
+    opacity: 0.2;
 }

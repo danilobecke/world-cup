@@ -92,3 +92,38 @@ function renderGame(date, first_team, second_team, card) {
         }
     })
 }
+
+function startEditing(evt, rawStage) {
+    let target = $(evt.target)
+    let wasActive = target.hasClass("active")
+    target.toggleClass("active");
+
+    switch(rawStage) {
+        case 'round16':
+            toggleEditing(!wasActive, extractCards("#round-16"))
+            break;
+        case 'quarters':
+            toggleEditing(!wasActive, extractCards("#quarters"))
+            break;
+        case 'semi':
+            toggleEditing(!wasActive, extractCards("#semi"))
+            break;
+        case 'final':
+            toggleEditing(!wasActive, extractCards("#final"))
+            break;
+    }
+}
+
+function toggleEditing(isEditing, cards) {
+    $(cards).each(function(index, card) {
+        let winners = $(card).find(".winner");
+        winners.each(function(index, winner) {
+            $(winner).css({"visibility": isEditing ? "visible" : "hidden"})
+            $(winner).attr("editing", isEditing);
+        })
+    })
+}
+
+function selectWinner(evt) {
+    let target = $(evt.target)
+}
