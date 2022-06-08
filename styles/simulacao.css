@@ -1,0 +1,18 @@
+.edit {
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+    border-radius: 4px;
+    color: black;
+    font-size: 18px;
+    margin: 0;
+}
+
+.edit.active {
+    background-color: #ddd;
+}
+
+.winner[editing="true"] {
+    opacity: 0.2;
+    cursor: pointer;
+}

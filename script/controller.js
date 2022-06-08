@@ -6,6 +6,7 @@ $(document).ready(function() {
 })
 
 function openGroup(evt, group) {
+    let shouldShowGroups = true
     switch(group) {
         case 'A': handleGroup(a, true); break;
         case 'B': handleGroup(b, true); break;
@@ -16,16 +17,22 @@ function openGroup(evt, group) {
         case 'G': handleGroup(g, true); break;
         case 'H': handleGroup(h, true); break;
         case 'bracket': 
+        shouldShowGroups = false
         renderBrackets()
-        showGroups(false)
         break;
     }
+    showGroups(shouldShowGroups)
 
     $(".tablinks").toArray().forEach(a => $(a).removeClass("active"))
     $(evt.target).addClass("active");
   }
 
 function showGroups(bool) {
-    $("#table").css("display", bool ? "block" : "none");
+    let table = $("#table")
+    if(bool && table.css("display") == "block") {
+        return // groups already displayed
+    }
+    resetSimulationButton()
+    table.css("display", bool ? "block" : "none");
     $("#bracket").css("display", !bool ? "block" : "none");
 }

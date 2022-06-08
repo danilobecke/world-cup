@@ -1,4 +1,5 @@
 var h = {
+    "name": "Grupo H",
     "teams": [
         {
             "name": "Portugal",

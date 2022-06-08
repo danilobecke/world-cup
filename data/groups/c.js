@@ -1,4 +1,5 @@
 var c = {
+    "name": "Grupo C",
     "teams": [
         {
             "name": "Argentina",

@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="styles/controller.css">
         <link rel="stylesheet" href="styles/tabelas.css">
         <link rel="stylesheet" href="styles/chaves.css">
+        <link rel="stylesheet" href="styles/simulacao.css">
         <title>Classificação</title>
     </head>
     <body>
@@ -38,6 +39,10 @@
             <button class="tablinks" onclick="openGroup(event, 'bracket')">Mata-Mata</button>
         </div>
         <div id="table">
+            <div class="group-label-container label-container">
+                <h3 id="group-name" class="label"></h3>
+                <button class="edit" onclick="toggleEditingGroup(event)">✎</button>
+            </div>
             <div id="tableAndTips">
                 <table id="sortable">
                     <tr>
@@ -132,28 +137,28 @@
             <div class="bracket-container ">
                 <div class="games-column">
                     <div class="label-container">
-                        <span class="label">Oitavas de Final</span>
+                        <h3 class="label">Oitavas de Final</h3>
                         <button class="edit" onclick="startEditing(event, 'round16')">✎</button>
                     </div>
                 </div>
                 <div class="brackets-column"></div>
                 <div class="games-column">
                     <div class="label-container">
-                        <span class="label">Quartas de Final</span>
+                        <h3 class="label">Quartas de Final</h3>
                         <button class="edit" onclick="startEditing(event, 'quarters')">✎</button>
                     </div>
                 </div>
                 <div class="brackets-column"></div>
                 <div class="games-column">
                     <div class="label-container">
-                        <span class="label">Semifinal</span>
+                        <h3 class="label">Semifinal</h3>
                         <button class="edit" onclick="startEditing(event, 'semi')">✎</button>
                     </div>
                 </div>
                 <div class="brackets-column"></div>
                 <div class="games-column">
                     <div class="label-container">
-                        <span class="label">Final</span>
+                        <h3 class="label">Final</h3>
                         <button class="edit" onclick="startEditing(event, 'final')">✎</button>
                     </div>
                 </div>

@@ -24,22 +24,13 @@
 
 .label-container {
     margin: auto;
+    align-items: center;
+    display: flex;
 }
 
 .label {
-    font-weight: 600;
-}
-
-.edit {
-    border: none;
-    cursor: pointer;
-    background-color: inherit;
-    border-radius: 4px;
-    color: black;
-}
-
-.edit.active {
-    background-color: #ddd;
+    float: left;
+    margin: 0px 4px 0px 0px;
 }
 
 .card {
@@ -151,14 +142,9 @@
     background-color: inherit;
     border: none;
     outline: none;
-    cursor: pointer;
     padding: 0px;
     color: black;
     font-size: 14px;
     font-weight: 300;
     font-family: sans-serif;
-}
-
-.winner[editing="true"] {
-    opacity: 0.2;
 }

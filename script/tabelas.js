@@ -8,7 +8,7 @@ function resetImages() {
 
 function handleGroup(group, shouldResetImage) {
     selectedGroup = group;
-    showGroups(true)
+    $("#group-name").html(group["name"])
     if(shouldResetImage) {
         resetImages()
     }

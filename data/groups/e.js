@@ -1,4 +1,5 @@
 var e = {
+    "name": "Grupo E",
     "teams": [
         {
             "name": "Espanha",

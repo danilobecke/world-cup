@@ -1,3 +1,7 @@
+let isFirstTimeSortingGroups = true
+let isFirstTimeSortingBracket = true
+
+// Sortable set up
 function initSimulation() {
 	$("#sortable").sortable({
         items: 'tr:not(tr:first-child)',
@@ -5,6 +9,7 @@ function initSimulation() {
         cursor: "grab",
         start: start,
         stop: stop,
+        disabled: true
     });
 }
 
@@ -119,3 +124,70 @@ function updateTeam(source, destination) {
 	destination["name"] = source["name"]
 	destination["acronym"] = source["acronym"]
 }
+
+// Reset
+function resetSimulationButton() {
+	$(".edit").removeClass("active")
+	$("#sortable").sortable("disable")
+	let winner = $(".winner")
+	winner.css({"visibility": "hidden"})
+	winner.attr("editing", false);
+}
+
+// Groups simulation
+function toggleEditingGroup(evt) {
+	if(isFirstTimeSortingGroups) {
+		isFirstTimeSortingGroups = false
+		window.alert("Arraste e reordene os times para simular as classificações finais.")
+	}
+    let target = $(evt.target)
+    let wasActive = target.hasClass("active")
+    target.toggleClass("active")
+    let sortable = $("#sortable")
+    if(wasActive) {
+    	sortable.sortable("disable")
+    } else {
+    	sortable.sortable("enable")
+    }
+}
+
+// Bracket simulation
+function startEditing(evt, rawStage) {
+	if(isFirstTimeSortingBracket) {
+		window.alert("Selecione ◀ para simular o vencedor da partida.")
+		isFirstTimeSortingBracket = false
+	}
+    let target = $(evt.target)
+    let wasActive = target.hasClass("active")
+    target.toggleClass("active");
+
+    switch(rawStage) {
+        case 'round16':
+            toggleEditing(!wasActive, extractCards("#round-16"))
+            break;
+        case 'quarters':
+            toggleEditing(!wasActive, extractCards("#quarters"))
+            break;
+        case 'semi':
+            toggleEditing(!wasActive, extractCards("#semi"))
+            break;
+        case 'final':
+            toggleEditing(!wasActive, extractCards("#final"))
+            break;
+    }
+}
+
+function toggleEditing(isEditing, cards) {
+    $(cards).each(function(index, card) {
+        let winners = $(card).find(".winner");
+        winners.each(function(index, winner) {
+            $(winner).css({"visibility": isEditing ? "visible" : "hidden"})
+            $(winner).attr("editing", isEditing);
+        })
+    })
+}
+
+function selectWinner(evt) {
+    let target = $(evt.target)
+}
+

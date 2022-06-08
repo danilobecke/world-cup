@@ -4,6 +4,10 @@
     float: left;
 }
 
+.group-label-container {
+    padding: 16px 0px 8px 16px;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;

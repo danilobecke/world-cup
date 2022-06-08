@@ -1,4 +1,5 @@
 var d = {
+    "name": "Grupo D",
     "teams": [
         {
             "name": "França",
