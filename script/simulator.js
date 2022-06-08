@@ -187,7 +187,78 @@ function toggleEditing(isEditing, cards) {
     })
 }
 
-function selectWinner(evt) {
+function selectWinner(evt, rawStage) {
     let target = $(evt.target)
+    let teamRow = target.parent().parent()
+    let acronym = teamRow.attr("acronym")
+    if(acronym == "unknown") {
+    	return // empty team, do nothing
+    }
+    let cardRow = teamRow.parent()
+    let team;
+    let cardIndex;
+    let nextStage;
+    let action;
+    switch(rawStage) {
+        case 'round-16':
+        	team = findTeam(round16, acronym)
+        	cardIndex = indexOf(cardRow, "#round-16")
+        	nextStage = quarters
+        	action = renderQuarters
+            break;
+        case 'quarters':
+			team = findTeam(quarters, acronym)
+        	cardIndex = indexOf(cardRow, "#quarters")
+        	nextStage = semi
+        	action = renderSemi
+            break;
+        case 'semi':
+        	team = findTeam(semi, acronym)
+        	cardIndex = indexOf(cardRow, "#semi")
+        	nextStage = final
+        	action = renderFinal
+            break;
+        case 'final':
+        	team = findTeam(final, acronym)
+        	cardIndex = indexOf(cardRow, "#final")
+        	nextStage = null
+        	resetSimulationButton()
+        	action = renderBrackets
+            break;
+    }
+    team["winner"] = true
+    moveToNextStage(team, cardIndex, nextStage)
+    action()
 }
+
+function indexOf(cardRow, id) {
+	return extractCards(id).index(cardRow)
+}
+
+function findTeam(stage, acronym) {
+	let matches = stage["matches"]
+	let firstTeams = matches.flatMap(match => match["first_team"])
+	let secondTeams = matches.flatMap(match => match["second_team"])
+	return firstTeams.concat(secondTeams).find(function(team) {
+		if(!team) { return false }
+		return team["acronym"] == acronym
+	})
+}
+
+function moveToNextStage(team, cardIndex, nextStage) {
+	if(!nextStage) { return }
+	let teamCopy = Object.assign({}, team);
+	teamCopy["winner"] = false
+	let index = Math.floor(cardIndex / 2)
+	let match = nextStage["matches"][index]
+	if(cardIndex % 2 == 0) {
+		match["first_team"] = teamCopy
+	} else {
+		match["second_team"] = teamCopy
+	}
+}
+
+
+
+
 

@@ -64,6 +64,7 @@ function renderGame(date, first_team, second_team, card) {
                 } else {
                     team = second_team
                 }
+                $(row).attr("acronym", team["acronym"])
                 $(row).children().each(function(colum_index, column) {
                     switch(colum_index) {
                         case 0:
