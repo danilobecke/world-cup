@@ -13,7 +13,7 @@ var d = {
             "goals-conceded": 0
         },
         {
-            "name": "Peru/Emirados Árabes/Austrália",
+            "name": "Peru/Austrália",
             "acronym": "unknown",
             "position": 2,
             "points": 0,

@@ -129,9 +129,8 @@ function updateTeam(source, destination) {
 function resetSimulationButton() {
 	$(".edit").removeClass("active")
 	$("#sortable").sortable("disable")
-	let winner = $(".winner")
-	winner.css({"visibility": "hidden"})
-	winner.attr("editing", false);
+	$(".winner").attr("editing", false)
+	renderBrackets()
 }
 
 // Groups simulation
@@ -163,27 +162,36 @@ function startEditing(evt, rawStage) {
 
     switch(rawStage) {
         case 'round16':
-            toggleEditing(!wasActive, extractCards("#round-16"))
+            toggleEditing(!wasActive, extractCards("#round-16"), round16)
             break;
         case 'quarters':
-            toggleEditing(!wasActive, extractCards("#quarters"))
+            toggleEditing(!wasActive, extractCards("#quarters"), quarters)
             break;
         case 'semi':
-            toggleEditing(!wasActive, extractCards("#semi"))
+            toggleEditing(!wasActive, extractCards("#semi"), semi)
             break;
         case 'final':
-            toggleEditing(!wasActive, extractCards("#final"))
+            toggleEditing(!wasActive, extractCards("#final"), final)
             break;
     }
 }
 
-function toggleEditing(isEditing, cards) {
+function toggleEditing(isEditing, cards, stage) {
     $(cards).each(function(index, card) {
-        let winners = $(card).find(".winner");
-        winners.each(function(index, winner) {
-            $(winner).css({"visibility": isEditing ? "visible" : "hidden"})
+    	$(card).children().each(function(index, child){
+    		if(index == 0) { return } // Date row
+    		let acronym = $(child).attr("acronym")
+    		let visibility
+    		if(!acronym || acronym == "unknown") { 
+    			visibility = isEditing ? "visible" : "hidden"
+    		} else {
+    			let team = findTeam(stage, acronym)
+    			visibility = team["winner"] ? "visible" : (isEditing ? "visible" : "hidden")
+    		}
+    		let winner = $(child).find(".winner");
+    		$(winner).css({"visibility": visibility})
             $(winner).attr("editing", isEditing);
-        })
+    	})
     })
 }
 
@@ -257,8 +265,3 @@ function moveToNextStage(team, cardIndex, nextStage) {
 		match["second_team"] = teamCopy
 	}
 }
-
-
-
-
-
