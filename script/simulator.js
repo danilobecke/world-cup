@@ -40,72 +40,75 @@ function updateTable() {
 }
 
 function updateBracket() {
+	let sourceFirst
+	let sourceSecond
+	let destinationFirst
+	let destinationSecond
 	switch(selectedGroup) {
 		case a:
-			let sourceFirstA = findSourceTeam(a, 1)
-			let sourceSecondA = findSourceTeam(a, 2)
-			let firstA = findDestinationTeam("1a")
-			let secondA = findDestinationTeam("2a")
-			updateTeam(sourceFirstA, firstA)
-			updateTeam(sourceSecondA, secondA)
+			sourceFirst = findSourceTeam(a, 1)
+			sourceSecond = findSourceTeam(a, 2)
+			destinationFirst = findDestinationTeam("1a")
+			destinationSecond = findDestinationTeam("2a")
 			break;
 		case b:
-			let sourceFirstB = findSourceTeam(b, 1)
-			let sourceSecondB = findSourceTeam(b, 2)
-			let firstB = findDestinationTeam("1b")
-			let secondB = findDestinationTeam("2b")
-			updateTeam(sourceFirstB, firstB)
-			updateTeam(sourceSecondB, secondB)
+			sourceFirst = findSourceTeam(b, 1)
+			sourceSecond = findSourceTeam(b, 2)
+			destinationFirst = findDestinationTeam("1b")
+			destinationSecond = findDestinationTeam("2b")
 			break;
 		case c:
-			let sourceFirstC = findSourceTeam(c, 1)
-			let sourceSecondC = findSourceTeam(c, 2)
-			let firstC = findDestinationTeam("1c")
-			let secondC = findDestinationTeam("2c")
-			updateTeam(sourceFirstC, firstC)
-			updateTeam(sourceSecondC, secondC)
+			sourceFirst = findSourceTeam(c, 1)
+			sourceSecond = findSourceTeam(c, 2)
+			destinationFirst = findDestinationTeam("1c")
+			destinationSecond = findDestinationTeam("2c")
 			break;
 		case d:
-			let sourceFirstD = findSourceTeam(d, 1)
-			let sourceSecondD = findSourceTeam(d, 2)
-			let firstD = findDestinationTeam("1d")
-			let secondD = findDestinationTeam("2d")
-			updateTeam(sourceFirstD, firstD)
-			updateTeam(sourceSecondD, secondD)
+			sourceFirst = findSourceTeam(d, 1)
+			sourceSecond = findSourceTeam(d, 2)
+			destinationFirst = findDestinationTeam("1d")
+			destinationSecond = findDestinationTeam("2d")
 			break;
 		case e:
-			let sourceFirstE = findSourceTeam(e, 1)
-			let sourceSecondE = findSourceTeam(e, 2)
-			let firstE = findDestinationTeam("1e")
-			let secondE = findDestinationTeam("2e")
-			updateTeam(sourceFirstE, firstE)
-			updateTeam(sourceSecondE, secondE)
+			sourceFirst = findSourceTeam(e, 1)
+			sourceSecond = findSourceTeam(e, 2)
+			destinationFirst = findDestinationTeam("1e")
+			destinationSecond = findDestinationTeam("2e")
 			break;
 		case f:
-			let sourceFirstF = findSourceTeam(f, 1)
-			let sourceSecondF = findSourceTeam(f, 2)
-			let firstF = findDestinationTeam("1f")
-			let secondF = findDestinationTeam("2f")
-			updateTeam(sourceFirstF, firstF)
-			updateTeam(sourceSecondF, secondF)
+			sourceFirst = findSourceTeam(f, 1)
+			sourceSecond = findSourceTeam(f, 2)
+			destinationFirst = findDestinationTeam("1f")
+			destinationSecond = findDestinationTeam("2f")
 			break;
 		case g:
-			let sourceFirstG = findSourceTeam(g, 1)
-			let sourceSecondG = findSourceTeam(g, 2)
-			let firstG = findDestinationTeam("1g")
-			let secondG = findDestinationTeam("2g")
-			updateTeam(sourceFirstG, firstG)
-			updateTeam(sourceSecondG, secondG)
+			sourceFirst = findSourceTeam(g, 1)
+			sourceSecond = findSourceTeam(g, 2)
+			destinationFirst = findDestinationTeam("1g")
+			destinationSecond = findDestinationTeam("2g")
 			break;
 		case h:
-			let sourceFirstH = findSourceTeam(h, 1)
-			let sourceSecondH = findSourceTeam(h, 2)
-			let firstH = findDestinationTeam("1h")
-			let secondH = findDestinationTeam("2h")
-			updateTeam(sourceFirstH, firstH)
-			updateTeam(sourceSecondH, secondH)
+			sourceFirst = findSourceTeam(h, 1)
+			sourceSecond = findSourceTeam(h, 2)
+			destinationFirst = findDestinationTeam("1h")
+			destinationSecond = findDestinationTeam("2h")
 			break;
 	}
+	let nextStageAndRenderActionTuples = [
+		{"stage": quarters, "action": null},
+		{"stage": semi, "action": null},
+		{"stage": final, "action": null}
+	]
+	if(sourceFirst["acronym"] != destinationFirst["acronym"]) {
+		removeTeam(destinationFirst["acronym"], nextStageAndRenderActionTuples)
+		destinationFirst["winner"] = false
+	}
+	if(sourceSecond["acronym"] != destinationSecond["acronym"]) {
+		removeTeam(destinationSecond["acronym"], nextStageAndRenderActionTuples)
+		destinationSecond["winner"] = false
+	}
+	updateTeam(sourceFirst, destinationFirst)
+	updateTeam(sourceSecond, destinationSecond)
 }
 
 function findSourceTeam(group, position) {
@@ -131,6 +134,41 @@ function resetSimulationButton() {
 	$("#sortable").sortable("disable")
 	$(".winner").attr("editing", false)
 	renderBrackets()
+}
+
+function removeTeam(acronym, nextStageAndRenderActionTuples) {
+	if(!acronym || acronym == "unknown") { return }
+	nextStageAndRenderActionTuples.forEach(function(tuple) {
+		let matches = tuple["stage"]["matches"]
+		let isFirstTeam
+		let match = matches.find(function(current) {
+			let firstTeam = current["first_team"]
+			if(firstTeam) { 
+				if(firstTeam["acronym"] == acronym) { 
+					isFirstTeam = true
+					return true 
+				}
+			}
+			let secondTeam = current["second_team"]
+			if(secondTeam) {
+				if(secondTeam["acronym"] == acronym) { 
+					isFirstTeam = false
+					return true 
+				}	
+			}
+			return false
+		})
+		if(match) {
+			if(isFirstTeam) {
+				match["first_team"] = null
+			} else {
+				match["second_team"] = null
+			}
+		}
+		if(tuple["action"]) {
+			tuple["action"]()
+		}
+	})
 }
 
 // Groups simulation
@@ -205,38 +243,68 @@ function selectWinner(evt, rawStage) {
     let cardRow = teamRow.parent()
     let team;
     let cardIndex;
+    let currentStage;
     let nextStage;
-    let action;
+    let renderAction;
+    let nextStageAndRenderActionTuples;
     switch(rawStage) {
         case 'round-16':
         	team = findTeam(round16, acronym)
         	cardIndex = indexOf(cardRow, "#round-16")
+        	currentStage = round16
         	nextStage = quarters
-        	action = renderQuarters
+        	renderAction = renderQuarters
+        	nextStageAndRenderActionTuples = [
+        		{"stage": semi, "action": renderSemi},
+        		{"stage": final, "action": renderFinal},
+        	]
             break;
         case 'quarters':
 			team = findTeam(quarters, acronym)
         	cardIndex = indexOf(cardRow, "#quarters")
+        	currentStage = quarters
         	nextStage = semi
-        	action = renderSemi
+        	renderAction = renderSemi
+        	nextStageAndRenderActionTuples = [
+        		{"stage": final, "action": renderFinal},
+        	]
             break;
         case 'semi':
         	team = findTeam(semi, acronym)
         	cardIndex = indexOf(cardRow, "#semi")
+        	currentStage = semi
         	nextStage = final
-        	action = renderFinal
+        	renderAction = renderFinal
+        	nextStageAndRenderActionTuples = []
             break;
         case 'final':
         	team = findTeam(final, acronym)
         	cardIndex = indexOf(cardRow, "#final")
+        	currentStage = final
         	nextStage = null
         	resetSimulationButton()
-        	action = renderBrackets
+        	renderAction = renderBrackets
+        	nextStageAndRenderActionTuples = []
             break;
     }
     team["winner"] = true
     moveToNextStage(team, cardIndex, nextStage)
-    action()
+    cardRow.children().each(function(index, row) {
+    	if(index == 0) { return } // Skip date
+    	if($(row).attr("acronym") == acronym) {
+    		return // skip selected team
+    	} else {
+    		let otherAcronym = $(row).attr("acronym")
+    		if(!otherAcronym || otherAcronym == "unknown") { return }
+    		let otherTeam = findTeam(currentStage, otherAcronym)
+    		let wasSelected = otherTeam["winner"]
+    		otherTeam["winner"] = false
+    		if(wasSelected) {
+    			removeTeam(otherAcronym, nextStageAndRenderActionTuples)
+    		}
+    	}
+    })
+    renderAction() 
 }
 
 function indexOf(cardRow, id) {

@@ -82,7 +82,9 @@ function renderGame(date, first_team, second_team, card) {
                             let children_r = $(column).children()
                             $(children_r[0]).html(team["score"])
                             if(!team["winner"]) {
-                                $(children_r[1]).css("visibility", "hidden")
+                                let winnerElement = $(children_r[1])
+                                let isEditing = winnerElement.attr("editing") == "true"
+                                winnerElement.css("visibility", isEditing ? "visible" : "hidden")
                             } else {
                                 $(children_r[1]).css("visibility", "visible")
                             }
