@@ -13,8 +13,8 @@ var e = {
             "goals-conceded": 0
         },
         {
-            "name": "Costa Rica/Nova Zelândia",
-            "acronym": "unknown",
+            "name": "Costa Rica",
+            "acronym": "CRI",
             "position": 2,
             "points": 0,
             "win": 0,

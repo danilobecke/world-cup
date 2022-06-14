@@ -10,7 +10,7 @@
 
 .games-column {
     width: 18%;
-    min-width: 160px;
+    min-width: 171px;
     display: flex;
     flex-direction: column;
 }

@@ -13,8 +13,8 @@ var d = {
             "goals-conceded": 0
         },
         {
-            "name": "Peru/Austrália",
-            "acronym": "unknown",
+            "name": "Austrália",
+            "acronym": "AUS",
             "position": 2,
             "points": 0,
             "win": 0,
